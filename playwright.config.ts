@@ -40,28 +40,29 @@ export default defineConfig({
 
   projects: [
     {name: 'setup', testMatch: 'auth.setup.ts'},
-    {
-      name: 'staging',
-      use: { ...devices['Desktop Chrome'],
-        baseURL: 'http://localhost:4200'},
-    },
-    {
-      name: 'prod',
-      use: { ...devices['Desktop Chrome'],
-        baseURL: 'http://localhost:4200'},
-    },
+    // {
+    //   name: 'staging',
+    //   use: { ...devices['Desktop Chrome'],
+    //     baseURL: 'http://localhost:4200'},
+    // },
+    // {
+    //   name: 'prod',
+    //   use: { ...devices['Desktop Chrome'],
+    //     baseURL: 'http://localhost:4200'},
+    // },
     {
       name: 'chromium',
+      testMatch: 'uiComponents.spec.ts',
       use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' },
       dependencies: ['setup']
     },
-    {
-      name: 'mobile',
-      use: {
-        // ...devices['iPhone 14 Pro'],
-        viewport: {"width": 404, "height": 700}
-      },
-    },
+    // {
+    //   name: 'mobile',
+    //   use: {
+    //     // ...devices['iPhone 14 Pro'],
+    //     viewport: {"width": 404, "height": 700}
+    //   },
+    // },
 
     // {
     //   name: 'firefox',
