@@ -4,6 +4,7 @@ import { defineConfig, devices } from '@playwright/test';
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
+require('dotenv').config();
 // import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
@@ -36,12 +37,30 @@ export default defineConfig({
   },
 
   /* Configure projects for major browsers */
+
   projects: [
     {name: 'setup', testMatch: 'auth.setup.ts'},
+    {
+      name: 'staging',
+      use: { ...devices['Desktop Chrome'],
+        baseURL: 'http://localhost:4200'},
+    },
+    {
+      name: 'prod',
+      use: { ...devices['Desktop Chrome'],
+        baseURL: 'http://localhost:4200'},
+    },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' },
       dependencies: ['setup']
+    },
+    {
+      name: 'mobile',
+      use: {
+        // ...devices['iPhone 14 Pro'],
+        viewport: {"width": 404, "height": 700}
+      },
     },
 
     // {

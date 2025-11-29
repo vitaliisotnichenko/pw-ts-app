@@ -5,6 +5,7 @@ test.beforeEach(async ({page}) => {
 })
 
 test.describe('Form layout page', ()=> {
+  test.describe.configure({mode: "serial"})
   test.beforeEach( async({page}) => {
     await page.getByText('Forms').click();
     await page.getByText('Form Layouts').click();
